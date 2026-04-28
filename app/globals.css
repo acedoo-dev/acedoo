@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #030712;
+  --foreground: #f3f4f6;
 }
 
 @theme inline {
@@ -12,15 +12,34 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* KaTeX error styling */
+.katex-error {
+  color: #ff6b6b;
+  background: rgba(255, 107, 107, 0.1);
+  padding: 0 4px;
+  border-radius: 3px;
+}
+
+/* Print: hide UI chrome, show only the targeted card */
+@media print {
+  .no-print { display: none !important; }
+  body > * { visibility: hidden; }
+  .print-target,
+  .print-target * { visibility: visible; }
+  .print-target {
+    position: absolute;
+    inset: 0;
+    background: white !important;
+    color: black !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 2rem !important;
+    opacity: 1 !important;
+  }
 }
