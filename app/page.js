@@ -57,7 +57,10 @@ async function streamInto(url, body, onChunk) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   });
-  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  if (!res.ok) {
+    const data = await res.json().catch(() => ({}));
+    throw new Error(data.error ?? `Erreur HTTP ${res.status}`);
+  }
   const reader = res.body.getReader();
   const decoder = new TextDecoder();
   let text = '';
@@ -227,8 +230,8 @@ export default function Home() {
         updateItem(id, (it) => ({ ...it, problem: text })),
       );
       ok = true;
-    } catch {
-      setError('Une erreur est survenue. Vérifiez votre clé API dans .env.local.');
+    } catch (err) {
+      setError(err.message || 'Une erreur est survenue. Vérifiez votre clé API dans .env.local.');
       setItems((prev) => prev.filter((it) => it.id !== id));
     } finally {
       updateItem(id, (it) => ({
