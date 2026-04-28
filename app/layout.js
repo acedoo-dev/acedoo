@@ -15,6 +15,15 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Acedoo",
   description: "Pratique infinie pour le DEC en Sciences de la Nature",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
+  appleWebApp: {
+    capable: true,
+    title: "Acedoo",
+    statusBarStyle: "black-translucent",
+  },
 };
 
 export default function RootLayout({ children }) {
