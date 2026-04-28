@@ -86,6 +86,16 @@ function printCard(id) {
   document.querySelector(`[data-print-id="${id}"]`)?.classList.remove('print-target');
 }
 
+function encodeForUrl(data) {
+  const bytes = new TextEncoder().encode(JSON.stringify(data));
+  return btoa(String.fromCharCode(...bytes));
+}
+
+function decodeFromUrl(encoded) {
+  const bytes = Uint8Array.from(atob(encoded), (c) => c.charCodeAt(0));
+  return JSON.parse(new TextDecoder().decode(bytes));
+}
+
 function SubjectBar({ subject, counts }) {
   const total = counts.total;
   const shortName = subject.split('—')[0].trim();
@@ -125,6 +135,7 @@ export default function Home() {
   const [items, setItems] = useState([]);
   const [error, setError] = useState('');
   const [copiedId, setCopiedId] = useState(null);
+  const [sharedId, setSharedId] = useState(null);
   const [, forceUpdate] = useState(0);
   const [hydrated, setHydrated] = useState(false);
   const [showProgress, setShowProgress] = useState(false);
@@ -133,6 +144,33 @@ export default function Home() {
   const prevCountRef = useRef(0);
 
   useEffect(() => {
+    // Load shared problem from URL first
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const shared = params.get('p');
+      if (shared) {
+        const data = decodeFromUrl(shared);
+        if (data.problem && data.subject) {
+          setItems([{
+            id: Date.now(),
+            subject: data.subject,
+            difficulty: data.difficulty ?? 'Moyen',
+            problem: data.problem,
+            solution: null,
+            generatingProblem: false,
+            generatingSolution: false,
+            timerEnd: null,
+            rating: null,
+          }]);
+          prevCountRef.current = 1;
+          window.history.replaceState({}, '', '/');
+          setHydrated(true);
+          return;
+        }
+      }
+    } catch {}
+
+    // Otherwise restore from localStorage
     try {
       const saved = localStorage.getItem('acedoo-session');
       if (saved) {
@@ -262,6 +300,16 @@ export default function Home() {
     await navigator.clipboard.writeText(item.problem);
     setCopiedId(id);
     setTimeout(() => setCopiedId(null), 2000);
+  }
+
+  async function shareLink(id) {
+    const item = items.find((it) => it.id === id);
+    if (!item) return;
+    const encoded = encodeForUrl({ subject: item.subject, difficulty: item.difficulty, problem: item.problem });
+    const url = `${window.location.origin}/?p=${encoded}`;
+    await navigator.clipboard.writeText(url);
+    setSharedId(id);
+    setTimeout(() => setSharedId(null), 2000);
   }
 
   return (
@@ -443,6 +491,13 @@ export default function Home() {
                           className="text-xs text-gray-600 hover:text-gray-300 transition-colors"
                         >
                           {copiedId === item.id ? '✓ Copié' : '⎘ Copier'}
+                        </button>
+                        <button
+                          onClick={() => shareLink(item.id)}
+                          title="Copier le lien de partage"
+                          className="text-xs text-gray-600 hover:text-gray-300 transition-colors"
+                        >
+                          {sharedId === item.id ? '✓ Lien copié' : '🔗 Partager'}
                         </button>
                         <button
                           onClick={() => printCard(item.id)}
