@@ -34,6 +34,8 @@ const TIMER_OPTIONS = [
 ];
 
 const RATINGS = ['😕', '😐', '😊'];
+const RATING_COLOR = { '😕': 'bg-red-500', '😐': 'bg-yellow-500', '😊': 'bg-green-500' };
+const RATING_LABEL = { '😕': 'À retravailler', '😐': 'Moyen', '😊': 'Compris' };
 
 const mdProps = {
   remarkPlugins: [remarkMath],
@@ -81,6 +83,38 @@ function printCard(id) {
   document.querySelector(`[data-print-id="${id}"]`)?.classList.remove('print-target');
 }
 
+function SubjectBar({ subject, counts }) {
+  const total = counts.total;
+  const shortName = subject.split('—')[0].trim();
+  const worstRating = counts['😕'] > 0 ? '😕' : counts['😐'] > 0 ? '😐' : '😊';
+
+  return (
+    <div className="mb-3 last:mb-0">
+      <div className="flex justify-between text-xs mb-1">
+        <span className="text-gray-400">{shortName}</span>
+        <span className="text-gray-600">{total} prob.</span>
+      </div>
+      <div className="flex h-1.5 rounded-full overflow-hidden bg-gray-800 gap-px">
+        {RATINGS.slice().reverse().map((r) =>
+          counts[r] > 0 ? (
+            <div
+              key={r}
+              title={`${RATING_LABEL[r]} : ${counts[r]}`}
+              className={`${RATING_COLOR[r]} transition-all`}
+              style={{ width: `${(counts[r] / total) * 100}%` }}
+            />
+          ) : null,
+        )}
+      </div>
+      {counts['😕'] > 0 && (
+        <p className="text-xs text-red-400 mt-0.5">
+          {counts['😕']} difficile{counts['😕'] > 1 ? 's' : ''} — à retravailler
+        </p>
+      )}
+    </div>
+  );
+}
+
 export default function Home() {
   const [subject, setSubject] = useState(SUBJECTS[0]);
   const [difficulty, setDifficulty] = useState('Moyen');
@@ -90,11 +124,11 @@ export default function Home() {
   const [copiedId, setCopiedId] = useState(null);
   const [, forceUpdate] = useState(0);
   const [hydrated, setHydrated] = useState(false);
+  const [showProgress, setShowProgress] = useState(false);
 
   const itemsRef = useRef(null);
   const prevCountRef = useRef(0);
 
-  // Restore session from localStorage after hydration
   useEffect(() => {
     try {
       const saved = localStorage.getItem('acedoo-session');
@@ -110,7 +144,6 @@ export default function Home() {
     setHydrated(true);
   }, []);
 
-  // Persist session to localStorage whenever items change
   useEffect(() => {
     if (!hydrated) return;
     try {
@@ -118,7 +151,6 @@ export default function Home() {
     } catch {}
   }, [items, hydrated]);
 
-  // Smooth-scroll to the new card when one is added
   useEffect(() => {
     if (items.length > prevCountRef.current && itemsRef.current) {
       itemsRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -126,7 +158,6 @@ export default function Home() {
     prevCountRef.current = items.length;
   }, [items.length]);
 
-  // Cmd/Ctrl + Enter to generate
   useEffect(() => {
     function onKeyDown(e) {
       if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
@@ -138,7 +169,6 @@ export default function Home() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, []);
 
-  // Timer tick
   const hasActiveTimer = items.some((it) => it.timerEnd && it.timerEnd > Date.now());
   useEffect(() => {
     if (!hasActiveTimer) return;
@@ -148,9 +178,24 @@ export default function Home() {
 
   const isGenerating = items.length > 0 && items[0].generatingProblem;
   const ratedItems = items.filter((it) => it.rating);
+
   const sessionStats =
     ratedItems.length > 0
       ? RATINGS.map((r) => ({ emoji: r, count: ratedItems.filter((it) => it.rating === r).length }))
+      : null;
+
+  const subjectStats =
+    ratedItems.length > 0
+      ? Object.entries(
+          ratedItems.reduce((acc, it) => {
+            if (!acc[it.subject]) acc[it.subject] = { '😕': 0, '😐': 0, '😊': 0, total: 0 };
+            acc[it.subject][it.rating]++;
+            acc[it.subject].total++;
+            return acc;
+          }, {}),
+        )
+          .map(([subj, counts]) => ({ subject: subj, counts }))
+          .sort((a, b) => b.counts['😕'] - a.counts['😕'] || b.counts.total - a.counts.total)
       : null;
 
   function updateItem(id, updater) {
@@ -160,6 +205,12 @@ export default function Home() {
   function pickRandom() {
     const others = SUBJECTS.filter((s) => s !== subject);
     setSubject(others[Math.floor(Math.random() * others.length)]);
+  }
+
+  function clearSession() {
+    setItems([]);
+    localStorage.removeItem('acedoo-session');
+    setShowProgress(false);
   }
 
   async function doGenerate({ subj, diff, similarTo }) {
@@ -218,9 +269,9 @@ export default function Home() {
           Pratique infinie pour le DEC en Sciences de la Nature
         </p>
 
-        {/* Session stats */}
+        {/* Session stats bar */}
         {sessionStats && (
-          <div className="no-print mb-8 flex items-center justify-between p-4 bg-gray-900 border border-gray-800 rounded-xl text-sm">
+          <div className="no-print mb-4 flex items-center justify-between p-4 bg-gray-900 border border-gray-800 rounded-xl text-sm">
             <div className="flex items-center gap-5">
               <span className="text-gray-500 text-xs uppercase tracking-wider">Session</span>
               {sessionStats.map(({ emoji, count }) => (
@@ -233,19 +284,43 @@ export default function Home() {
                 {ratedItems.length} noté{ratedItems.length > 1 ? 's' : ''}
               </span>
             </div>
-            <button
-              onClick={() => { setItems([]); localStorage.removeItem('acedoo-session'); }}
-              className="text-xs text-gray-700 hover:text-red-400 transition-colors"
-              title="Effacer la session"
-            >
-              Effacer
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setShowProgress((v) => !v)}
+                className="text-xs text-gray-500 hover:text-gray-200 transition-colors"
+              >
+                {showProgress ? 'Masquer' : 'Progression'}
+              </button>
+              <button
+                onClick={clearSession}
+                className="text-xs text-gray-700 hover:text-red-400 transition-colors"
+              >
+                Effacer
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Progress dashboard */}
+        {showProgress && subjectStats && (
+          <div className="no-print mb-6 p-5 bg-gray-900 border border-gray-800 rounded-xl">
+            <h2 className="text-xs text-gray-500 uppercase tracking-wider mb-4">Progression par matière</h2>
+            {subjectStats.map(({ subject: subj, counts }) => (
+              <SubjectBar key={subj} subject={subj} counts={counts} />
+            ))}
+            <div className="flex gap-4 mt-4 pt-3 border-t border-gray-800">
+              {RATINGS.map((r) => (
+                <span key={r} className="flex items-center gap-1.5 text-xs text-gray-600">
+                  <span className={`w-2 h-2 rounded-full ${RATING_COLOR[r]}`} />
+                  {RATING_LABEL[r]}
+                </span>
+              ))}
+            </div>
           </div>
         )}
 
         {/* Controls */}
         <div className="no-print flex flex-col gap-3">
-          {/* Subject + random */}
           <div className="flex gap-2">
             <select
               value={subject}
@@ -267,7 +342,6 @@ export default function Home() {
             </button>
           </div>
 
-          {/* Difficulty + timer */}
           <div className="flex gap-2">
             {DIFFICULTIES.map((d) => (
               <button
@@ -301,7 +375,6 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Generate */}
           <button
             data-generate-btn
             onClick={() => doGenerate({ subj: subject, diff: difficulty })}
@@ -310,14 +383,21 @@ export default function Home() {
           >
             {isGenerating ? 'Génération en cours…' : 'Générer un problème'}
           </button>
-          <p className="text-center text-xs text-gray-700">
-            ⌘ Enter pour générer
-          </p>
+          <p className="text-center text-xs text-gray-700">⌘ Entrée pour générer</p>
         </div>
 
         {error && (
           <div className="no-print mt-6 p-4 bg-red-900/40 border border-red-700 rounded-lg text-red-300 text-sm">
             {error}
+          </div>
+        )}
+
+        {/* Empty state */}
+        {hydrated && items.length === 0 && (
+          <div className="no-print mt-12 text-center text-gray-700 space-y-2">
+            <p className="text-4xl">📐</p>
+            <p className="text-sm">Choisis une matière et clique sur <strong className="text-gray-500">Générer un problème</strong>.</p>
+            <p className="text-xs">Note-toi avec 😕 😐 😊 après chaque problème pour suivre ta progression.</p>
           </div>
         )}
 
@@ -337,7 +417,6 @@ export default function Home() {
                     index === 0 ? 'border-gray-700' : 'border-gray-800 opacity-50 hover:opacity-80'
                   }`}
                 >
-                  {/* Card header */}
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="text-xs text-blue-400 font-medium uppercase tracking-wider">
@@ -372,7 +451,6 @@ export default function Home() {
                     )}
                   </div>
 
-                  {/* Problem text */}
                   {item.generatingProblem && !item.problem && (
                     <div className="text-gray-500 text-sm animate-pulse">Génération en cours…</div>
                   )}
@@ -382,10 +460,8 @@ export default function Home() {
                     </div>
                   )}
 
-                  {/* Post-generation actions */}
                   {!item.generatingProblem && item.problem && (
                     <div className="mt-5 space-y-4">
-                      {/* Rating */}
                       <div className="no-print flex items-center gap-3">
                         {!item.rating ? (
                           <>
@@ -413,7 +489,6 @@ export default function Home() {
                         )}
                       </div>
 
-                      {/* Action buttons */}
                       <div className="no-print flex gap-3 flex-wrap">
                         {!item.solution && (
                           <button
@@ -433,7 +508,6 @@ export default function Home() {
                         </button>
                       </div>
 
-                      {/* Solution */}
                       {item.solution && (
                         <div className="pt-4 border-t border-gray-700">
                           <div className="text-xs text-green-400 font-medium mb-3 uppercase tracking-wider">
