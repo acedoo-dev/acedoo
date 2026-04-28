@@ -258,8 +258,8 @@ export default function Home() {
     setError('');
     const id = Date.now();
     setItems((prev) => [
-      { id, subject: subj, difficulty: diff, problem: '', solution: null,
-        generatingProblem: true, generatingSolution: false, timerEnd: null, rating: null },
+      { id, subject: subj, difficulty: diff, problem: '', solution: null, hint: null,
+        generatingProblem: true, generatingSolution: false, generatingHint: false, timerEnd: null, rating: null },
       ...prev,
     ]);
     let ok = false;
@@ -277,6 +277,20 @@ export default function Home() {
         generatingProblem: false,
         timerEnd: ok && timerDuration > 0 ? Date.now() + timerDuration * 1000 : null,
       }));
+    }
+  }
+
+  async function revealHint(id) {
+    const item = items.find((it) => it.id === id);
+    if (!item) return;
+    updateItem(id, (it) => ({ ...it, generatingHint: true }));
+    try {
+      await streamInto('/api/generate-hint', { subject: item.subject, problem: item.problem }, (text) =>
+        updateItem(id, (it) => ({ ...it, hint: text })),
+      );
+    } catch {}
+    finally {
+      updateItem(id, (it) => ({ ...it, generatingHint: false }));
     }
   }
 
@@ -547,7 +561,26 @@ export default function Home() {
                         )}
                       </div>
 
+                      {/* Hint box */}
+                      {item.hint && (
+                        <div className="p-4 bg-amber-950/30 border border-amber-800/40 rounded-lg">
+                          <div className="text-xs text-amber-400 font-medium mb-2 uppercase tracking-wider">💡 Indice</div>
+                          <div className={`text-amber-100/80 text-sm ${contentCls}`}>
+                            <ReactMarkdown {...mdProps}>{item.hint}</ReactMarkdown>
+                          </div>
+                        </div>
+                      )}
+
                       <div className="no-print flex gap-3 flex-wrap">
+                        {!item.hint && !item.solution && (
+                          <button
+                            onClick={() => revealHint(item.id)}
+                            disabled={item.generatingHint}
+                            className="text-sm text-amber-700 hover:text-amber-400 border border-amber-900/50 hover:border-amber-700/60 rounded-lg px-4 py-2 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+                          >
+                            {item.generatingHint ? 'Chargement…' : '💡 Voir un indice'}
+                          </button>
+                        )}
                         {!item.solution && (
                           <button
                             onClick={() => revealSolution(item.id)}
