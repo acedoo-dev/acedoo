@@ -1,0 +1,160 @@
+{
+  "Physique": {
+    "icon": "atom",
+    "cours": {
+      "Mécanique (101)": {
+        "manuel": "Benson — Mécanique (vol. 1)",
+        "chapitres": {
+          "Ch. 1 — Vecteurs et cinématique": ["Composantes vectorielles", "Addition et soustraction de vecteurs", "Produit scalaire et vectoriel"],
+          "Ch. 2 — Mouvement rectiligne": ["Vitesse moyenne et instantanée", "Accélération", "MRUA (équations cinématiques)"],
+          "Ch. 3 — Mouvement à 2D": ["Mouvement de projectile", "Mouvement circulaire uniforme"],
+          "Ch. 4 — Lois de Newton": ["Première loi (inertie)", "Deuxième loi (F=ma)", "Troisième loi (action-réaction)", "Diagrammes de corps libre"],
+          "Ch. 5 — Forces appliquées": ["Forces gravitationnelles", "Forces de tension", "Forces normales", "Forces de frottement (statique et cinétique)"],
+          "Ch. 6 — Travail et énergie": ["Travail d'une force", "Énergie cinétique", "Théorème énergie-travail"],
+          "Ch. 7 — Conservation de l'énergie": ["Énergie potentielle gravitationnelle", "Énergie potentielle élastique", "Conservation de l'énergie mécanique"],
+          "Ch. 8 — Quantité de mouvement": ["Impulsion", "Conservation de la quantité de mouvement", "Collisions élastiques et inélastiques"],
+          "Ch. 9 — Rotation": ["Cinématique de rotation", "Moment de force", "Moment d'inertie", "Énergie de rotation"]
+        }
+      },
+      "Électricité et magnétisme (201)": {
+        "manuel": "Benson — Électricité et magnétisme (vol. 2)",
+        "chapitres": {
+          "Ch. 1 — Charge et champ électrique": ["Loi de Coulomb", "Champ d'une charge ponctuelle", "Champ d'une distribution continue", "Lignes de champ"],
+          "Ch. 2 — Loi de Gauss": ["Flux électrique", "Loi de Gauss", "Applications (sphère, cylindre, plan infini)"],
+          "Ch. 3 — Potentiel électrique": ["Différence de potentiel", "Potentiel d'une charge ponctuelle", "Surfaces équipotentielles"],
+          "Ch. 4 — Capacité et condensateurs": ["Capacité d'un condensateur plan", "Énergie stockée", "Diélectriques"],
+          "Ch. 5 — Courant et résistance": ["Loi d'Ohm", "Résistivité", "Puissance électrique"],
+          "Ch. 6 — Circuits CC": ["Lois de Kirchhoff", "Circuits série", "Circuits parallèles", "Circuits mixtes"],
+          "Ch. 7 — Circuits RC": ["Charge d'un condensateur", "Décharge d'un condensateur", "Constante de temps τ=RC"],
+          "Ch. 8 — Champ magnétique": ["Force magnétique sur une charge", "Force sur un fil", "Mouvement circulaire de charge"],
+          "Ch. 9 — Sources de champ magnétique": ["Loi de Biot-Savart", "Loi d'Ampère", "Solénoïde"],
+          "Ch. 10 — Induction électromagnétique": ["Loi de Faraday", "Loi de Lenz", "Force électromotrice induite"]
+        }
+      },
+      "Ondes et physique moderne (301)": {
+        "manuel": "Benson — Ondes et physique moderne (vol. 3)",
+        "chapitres": {
+          "Ch. 1 — Oscillations": ["Mouvement harmonique simple", "Pendule simple", "Énergie en MHS"],
+          "Ch. 2 — Ondes mécaniques": ["Ondes transversales et longitudinales", "Vitesse d'onde", "Superposition"],
+          "Ch. 3 — Son": ["Intensité sonore", "Effet Doppler", "Ondes stationnaires"],
+          "Ch. 4 — Optique géométrique": ["Réflexion et réfraction", "Loi de Snell", "Miroirs", "Lentilles minces"],
+          "Ch. 5 — Optique physique": ["Interférences", "Diffraction", "Polarisation"],
+          "Ch. 6 — Relativité restreinte": ["Postulats d'Einstein", "Dilatation du temps", "Contraction des longueurs"],
+          "Ch. 7 — Physique quantique": ["Effet photoélectrique", "Modèle de Bohr", "Dualité onde-particule"],
+          "Ch. 8 — Physique nucléaire": ["Structure du noyau", "Radioactivité", "Réactions nucléaires"]
+        }
+      }
+    }
+  },
+  "Mathématiques": {
+    "icon": "function",
+    "cours": {
+      "Calcul différentiel (103)": {
+        "manuel": "Stewart — Calcul différentiel",
+        "chapitres": {
+          "Ch. 1 — Limites et continuité": ["Limite finie en un point", "Limites infinies / asymptotes verticales", "Limites à l'infini / asymptotes horizontales", "Indéterminations (0/0, ∞/∞)", "Continuité"],
+          "Ch. 2 — Dérivées": ["Définition par limite", "Règles (somme, produit, quotient)", "Règle de la chaîne", "Dérivation implicite", "Dérivées trigonométriques", "Dérivées exponentielles et logarithmiques"],
+          "Ch. 3 — Applications de la dérivée": ["Tangente et droite normale", "Vitesse et accélération", "Taux liés"],
+          "Ch. 4 — Optimisation et analyse de fonction": ["Croissance/décroissance", "Maximum/minimum locaux et absolus", "Concavité et points d'inflexion", "Tracé de courbe complet", "Problèmes d'optimisation"],
+          "Ch. 5 — Théorèmes": ["Théorème des valeurs intermédiaires", "Théorème de Rolle", "Règle de L'Hôpital"]
+        }
+      },
+      "Calcul intégral (203)": {
+        "manuel": "Stewart — Calcul intégral",
+        "chapitres": {
+          "Ch. 1 — Antidérivées": ["Définition", "Règles de base", "Méthode de substitution"],
+          "Ch. 2 — Intégrale définie": ["Sommes de Riemann", "Théorème fondamental du calcul", "Propriétés"],
+          "Ch. 3 — Techniques d'intégration": ["Intégration par parties", "Substitution trigonométrique", "Fractions partielles"],
+          "Ch. 4 — Applications": ["Aire entre deux courbes", "Volumes de révolution", "Longueur d'arc"],
+          "Ch. 5 — Intégrales impropres": ["Bornes infinies", "Intégrandes non bornés", "Critères de convergence"],
+          "Ch. 6 — Suites et séries": ["Convergence d'une suite", "Séries géométriques", "Tests de convergence", "Séries de Taylor et Maclaurin"]
+        }
+      },
+      "Algèbre linéaire (105)": {
+        "manuel": "Anton — Algèbre linéaire",
+        "chapitres": {
+          "Ch. 1 — Systèmes d'équations linéaires": ["Méthode de Gauss-Jordan", "Matrices augmentées"],
+          "Ch. 2 — Matrices": ["Opérations matricielles", "Inverse", "Déterminants"],
+          "Ch. 3 — Espaces vectoriels": ["Espaces R^n", "Sous-espaces", "Indépendance linéaire", "Base et dimension"],
+          "Ch. 4 — Transformations linéaires": ["Définition", "Matrice associée", "Noyau et image"],
+          "Ch. 5 — Vecteurs et géométrie": ["Produit scalaire", "Produit vectoriel", "Droites et plans dans R^3"],
+          "Ch. 6 — Valeurs et vecteurs propres": ["Définition", "Diagonalisation"]
+        }
+      }
+    }
+  },
+  "Chimie": {
+    "icon": "flask",
+    "cours": {
+      "Chimie générale (101)": {
+        "manuel": "Petrucci — Chimie générale",
+        "chapitres": {
+          "Ch. 1 — Matière et mesures": ["Unités SI et préfixes", "Conversions d'unités", "Densité et masse volumique"],
+          "Ch. 2 — Atomes, molécules, ions": ["Structure atomique de base", "Isotopes et masses atomiques", "Ions et formation"],
+          "Ch. 3 — Stœchiométrie": ["Mole et nombre d'Avogadro", "Masse molaire", "Composition centésimale", "Formule empirique et moléculaire"],
+          "Ch. 4 — Réactions chimiques": ["Équilibrage d'équations", "Types de réactions", "Réactif limitant", "Rendement de réaction"],
+          "Ch. 5 — Solutions et concentrations": ["Molarité", "Dilutions", "Stœchiométrie en solution"],
+          "Ch. 6 — Thermochimie": ["Énergie et chaleur", "Calorimétrie", "Enthalpie de réaction", "Loi de Hess"],
+          "Ch. 7 — Structure électronique": ["Modèle quantique de l'atome", "Configurations électroniques", "Tableau périodique et tendances"],
+          "Ch. 8 — Liaisons chimiques": ["Liaisons ioniques", "Liaisons covalentes", "Géométrie moléculaire (VSEPR)", "Polarité"]
+        }
+      },
+      "Chimie des solutions (201)": {
+        "manuel": "Petrucci — Chimie des solutions",
+        "chapitres": {
+          "Ch. 1 — Solutions": ["Concentrations (molarité, molalité, %)", "Solubilité", "Loi de Henry"],
+          "Ch. 2 — Équilibre chimique": ["Constante d'équilibre Kc", "Loi de Le Chatelier"],
+          "Ch. 3 — Acides et bases": ["Théories Arrhenius, Brönsted, Lewis", "pH et pOH", "Constantes Ka et Kb"],
+          "Ch. 4 — Solutions tampons": ["Préparation d'un tampon", "Équation Henderson-Hasselbalch", "Capacité tampon"],
+          "Ch. 5 — Titrages": ["Acide fort/base forte", "Acide faible/base forte", "Indicateurs"],
+          "Ch. 6 — Solubilité": ["Produit de solubilité Ksp", "Effet d'ion commun"],
+          "Ch. 7 — Cinétique chimique": ["Vitesse de réaction", "Loi de vitesse", "Énergie d'activation"],
+          "Ch. 8 — Thermodynamique": ["Enthalpie, entropie", "Énergie libre de Gibbs", "Spontanéité"],
+          "Ch. 9 — Électrochimie": ["Réactions redox", "Piles galvaniques", "Équation de Nernst", "Électrolyse"]
+        }
+      },
+      "Chimie organique (202)": {
+        "manuel": "McMurry — Chimie organique",
+        "chapitres": {
+          "Ch. 1 — Structure et liaisons": ["Hybridation", "Orbitales", "Liaisons σ et π"],
+          "Ch. 2 — Alcanes et cycloalcanes": ["Nomenclature IUPAC", "Conformations"],
+          "Ch. 3 — Stéréochimie": ["Chiralité", "Énantiomères et diastéréomères", "Notation R/S"],
+          "Ch. 4 — Alcènes et alcynes": ["Nomenclature", "Réactions d'addition", "Mécanismes"],
+          "Ch. 5 — Hydrocarbures aromatiques": ["Benzène", "Substitution électrophile aromatique"],
+          "Ch. 6 — Halogénoalcanes": ["Réactions SN1, SN2", "Réactions E1, E2"],
+          "Ch. 7 — Alcools et éthers": ["Synthèse", "Réactions caractéristiques"],
+          "Ch. 8 — Aldéhydes et cétones": ["Addition nucléophile"],
+          "Ch. 9 — Acides carboxyliques": ["Esters, amides, anhydrides", "Estérification"]
+        }
+      }
+    }
+  },
+  "Biologie": {
+    "icon": "dna",
+    "cours": {
+      "Évolution et diversité du vivant (101)": {
+        "manuel": "Raven — Biologie",
+        "chapitres": {
+          "Ch. 1 — Théorie cellulaire": ["Cellule procaryote vs eucaryote", "Organites cellulaires", "Membrane plasmique"],
+          "Ch. 2 — Évolution et sélection naturelle": ["Théorie de Darwin", "Mécanismes évolutifs", "Spéciation"],
+          "Ch. 3 — Génétique de base": ["ADN et gènes", "Mitose et méiose", "Lois de Mendel", "Hérédité monogénique"],
+          "Ch. 4 — Diversité du vivant (taxonomie)": ["Classification (règnes, phylums)", "Procaryotes (bactéries, archées)", "Eucaryotes (protistes, champignons, plantes, animaux)"],
+          "Ch. 5 — Écologie": ["Niveaux d'organisation (population, communauté, écosystème)", "Flux d'énergie et chaînes trophiques", "Cycles biogéochimiques", "Biodiversité"]
+        }
+      },
+      "Génétique (401)": {
+        "manuel": "Pierce — Génétique",
+        "chapitres": {
+          "Ch. 1 — Bases moléculaires": ["ADN structure et réplication", "Code génétique", "Transcription et traduction"],
+          "Ch. 2 — Hérédité mendélienne": ["Lois de Mendel", "Croisements monohybrides", "Croisements dihybrides", "Test du chi-carré"],
+          "Ch. 3 — Liaison et cartographie": ["Liaison génétique", "Distance génétique", "Cartes génétiques"],
+          "Ch. 4 — Hérédité liée au sexe": ["Chromosomes sexuels", "Maladies liées au X", "Hérédité mitochondriale"],
+          "Ch. 5 — Mutations": ["Types de mutations", "Aneuploïdies (trisomie 21, etc.)", "Réarrangements chromosomiques"],
+          "Ch. 6 — Régulation génique": ["Opérons (lac, trp)", "Régulation chez les eucaryotes"],
+          "Ch. 7 — Génétique des populations": ["Loi de Hardy-Weinberg", "Évolution et sélection"],
+          "Ch. 8 — Biotechnologie": ["PCR", "Clonage", "CRISPR"]
+        }
+      }
+    }
+  }
+}
