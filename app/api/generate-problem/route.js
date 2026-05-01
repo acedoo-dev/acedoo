@@ -15,7 +15,7 @@ export async function POST(request) {
   const { subject, course, chapter, concept, manuel, difficulty, mode, similarTo } = await request.json();
 
   const similarClause = similarTo
-    ? `\n\nGénère un contenu DIFFÉRENT mais sur le même concept (ne pas répéter les mêmes valeurs numériques ni le même énoncé) :\n${similarTo.slice(0, 300)}`
+    ? `\n\nGénère un problème SIMILAIRE à celui-ci, sur le même concept (${concept}) du chapitre ${chapter}, niveau CEGEP, en français. Garde la même difficulté mais varie les valeurs numériques et le contexte.\n\nProblème précédent (ne pas répéter) :\n${similarTo.slice(0, 400)}`
     : '';
 
   let prompt;
@@ -40,9 +40,9 @@ Ton explication doit :
 Format markdown.${similarClause}`;
   } else {
     const lengthInstr = mode === 'longues'
-      ? "Le problème doit être multi-étapes, approfondi, et représentatif d'un problème de synthèse ou d'examen final."
-      : 'Le problème doit être court et direct, avec une ou deux étapes de calcul maximum.';
-    maxTokens = mode === 'longues' ? 1536 : 1024;
+      ? "Le problème doit être multi-étapes et représentatif d'un problème de synthèse. Reste concis dans l'énoncé, va droit au but."
+      : "Le problème doit être concis : 3-5 phrases maximum, pas plus. Pas de longue mise en contexte. Va droit au but. Une ou deux étapes de calcul.";
+    maxTokens = mode === 'longues' ? 700 : 400;
 
     prompt = `Tu es un générateur de problèmes pour étudiants en sciences de la nature au CEGEP au Québec. Génère UN problème de niveau CEGEP en français sur le concept précis suivant : '${concept}'.
 
@@ -62,7 +62,7 @@ Retourne uniquement le problème, sans solution. Format markdown.${similarClause
 
   try {
     const stream = client.messages.stream({
-      model: 'claude-sonnet-4-5',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: maxTokens,
       messages: [{ role: 'user', content: prompt }],
     });
