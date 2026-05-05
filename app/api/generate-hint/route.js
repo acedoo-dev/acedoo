@@ -16,20 +16,15 @@ export async function POST(request) {
 
   try {
     const stream = client.messages.stream({
-      model: 'claude-sonnet-4-5',
+      model: 'claude-haiku-4-5-20251001',
       max_tokens: 300,
       messages: [
         {
           role: 'user',
-          content: `Tu es un professeur de CÉGEP en Sciences de la Nature au Québec. Voici un problème du cours "${subject}" :
-
+          content: `Tu es un tuteur de niveau CÉGEP en sciences. Voici un problème :
 ${problem}
 
-Donne UN seul indice qui aide l'étudiant à débloquer sans révéler la réponse. L'indice doit :
-- Nommer le concept ou la loi clé à appliquer
-- Suggérer par où commencer sans donner les étapes
-- Tenir en 2-3 phrases maximum
-En français, Markdown, LaTeX si nécessaire ($...$ ou $$...$$).`,
+Donne UN indice court (1-3 phrases max) qui aide l'étudiant à démarrer la résolution SANS révéler la réponse. Identifie le concept clé ou la formule à utiliser. Ton encourageant, comme un bon prof. En français. Markdown et LaTeX si nécessaire ($...$ ou $$...$$).`,
         },
       ],
     });

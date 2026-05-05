@@ -10,7 +10,7 @@ import {
   Atom, Sigma, FlaskConical, Dna,
   Cog, Zap, AudioWaveform, TrendingUp, Grid3X3, Beaker, Hexagon, TreePine,
   BookOpen, FileText,
-  ArrowLeft, Dice6, RefreshCw, ImageUp, Copy, Eye, Sun, Moon, LayoutDashboard,
+  ArrowLeft, Dice6, RefreshCw, ImageUp, Copy, Eye, Sun, Moon, LayoutDashboard, Lightbulb,
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
@@ -520,7 +520,7 @@ export default function Home() {
   async function revealHint(id) {
     const item = items.find(it => it.id === id);
     if (!item) return;
-    updateItem(id, it => ({ ...it, generatingHint: true }));
+    updateItem(id, it => ({ ...it, generatingHint: true, hint: null }));
     try {
       await streamInto('/api/generate-hint', { subject: item.subject, problem: item.problem },
         text => updateItem(id, it => ({ ...it, hint: text })));
@@ -991,39 +991,29 @@ export default function Home() {
                               <RefreshCw size={24} className="text-amber-500" />
                               <span className="text-[11px] font-medium text-amber-500">Similaire</span>
                             </button>
-                          </div>
-                        )}
-
-                        {/* Secondary row: hint + share + print */}
-                        <div className="no-print flex gap-2 flex-wrap">
-                          {currentItem.mode !== 'apprendre' && !currentItem.hint && (
+                            {/* Indice */}
                             <button
                               onClick={() => revealHint(currentItem.id)}
                               disabled={currentItem.generatingHint}
-                              className="text-xs text-amber-600 dark:text-amber-700 hover:text-amber-500 dark:hover:text-amber-400 border border-amber-200 dark:border-amber-900/50 hover:border-amber-300 dark:hover:border-amber-700/60 rounded-lg px-3 py-1.5 transition-colors disabled:opacity-40"
+                              title="Obtenir un indice"
+                              className="flex flex-col items-center gap-1 p-3 rounded-full border border-gray-200 dark:border-gray-700/60 bg-gray-50 dark:bg-gray-800/40 hover:border-violet-500/60 hover:shadow-[0_0_16px_rgba(139,92,246,0.2)] hover:scale-105 transition-all duration-200 disabled:opacity-40 min-w-[60px] min-h-[60px] justify-center"
                             >
-                              {currentItem.generatingHint ? 'Chargement…' : '💡 Indice'}
+                              <Lightbulb size={24} className="text-violet-500" />
+                              <span className="text-[11px] font-medium text-violet-500">
+                                {currentItem.generatingHint ? '…' : 'Indice'}
+                              </span>
                             </button>
-                          )}
-                          <button
-                            onClick={() => shareLink(currentItem.id)}
-                            className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 border border-gray-200 dark:border-gray-800 rounded-lg px-3 py-1.5 transition-colors"
-                          >
-                            {sharedId === currentItem.id ? '✓ Lien copié' : '🔗 Partager'}
-                          </button>
-                          <button
-                            onClick={() => printCard(currentItem.id)}
-                            className="text-xs text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 border border-gray-200 dark:border-gray-800 rounded-lg px-3 py-1.5 transition-colors"
-                          >
-                            ⎙ PDF
-                          </button>
-                        </div>
+                          </div>
+                        )}
 
                         {/* Hint block */}
                         {currentItem.mode !== 'apprendre' && currentItem.hint && (
-                          <div className="p-4 bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800/40 rounded-lg">
-                            <div className="text-xs text-amber-500 dark:text-amber-400 font-medium mb-2 uppercase tracking-wider">💡 Indice</div>
-                            <div className={`text-amber-800 dark:text-amber-100/80 text-sm ${contentCls}`}>
+                          <div className="p-4 bg-violet-50 dark:bg-violet-950/30 border border-violet-200 dark:border-violet-800/40 rounded-lg">
+                            <div className="flex items-center gap-1.5 mb-2">
+                              <Lightbulb size={13} className="text-violet-500" />
+                              <span className="text-xs text-violet-500 font-medium uppercase tracking-wider">Indice</span>
+                            </div>
+                            <div className={`text-violet-900 dark:text-violet-100/80 text-sm ${contentCls}`}>
                               <ReactMarkdown {...mdProps}>{currentItem.hint}</ReactMarkdown>
                             </div>
                           </div>
