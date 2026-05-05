@@ -27,7 +27,9 @@ export async function POST(request) {
 
 Cours : ${subject} — ${course}
 Chapitre : ${chapter}
+Concept : ${concept}
 Manuel de référence : ${manuel}
+Aligné avec : ${manuel}, ${chapter}, concept : '${concept}'
 
 Ton explication doit :
 - Définir clairement le concept
@@ -48,7 +50,9 @@ Format markdown.${similarClause}`;
 
 Cours : ${subject} — ${course}
 Chapitre : ${chapter}
+Concept : ${concept}
 Manuel de référence : ${manuel}
+Aligné avec : ${manuel}, ${chapter}, concept : '${concept}'
 
 Le problème doit :
 - Inclure des données numériques concrètes

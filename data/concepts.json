@@ -17,31 +17,253 @@
         }
       },
       "Électricité et magnétisme (201)": {
-        "manuel": "Benson — Électricité et magnétisme (vol. 2)",
+        "manuel": "Benson — Vol. 2 : Électricité et magnétisme",
         "chapitres": {
-          "Ch. 1 — Charge et champ électrique": ["Loi de Coulomb", "Champ d'une charge ponctuelle", "Champ d'une distribution continue", "Lignes de champ"],
-          "Ch. 2 — Loi de Gauss": ["Flux électrique", "Loi de Gauss", "Applications (sphère, cylindre, plan infini)"],
-          "Ch. 3 — Potentiel électrique": ["Différence de potentiel", "Potentiel d'une charge ponctuelle", "Surfaces équipotentielles"],
-          "Ch. 4 — Capacité et condensateurs": ["Capacité d'un condensateur plan", "Énergie stockée", "Diélectriques"],
-          "Ch. 5 — Courant et résistance": ["Loi d'Ohm", "Résistivité", "Puissance électrique"],
-          "Ch. 6 — Circuits CC": ["Lois de Kirchhoff", "Circuits série", "Circuits parallèles", "Circuits mixtes"],
-          "Ch. 7 — Circuits RC": ["Charge d'un condensateur", "Décharge d'un condensateur", "Constante de temps τ=RC"],
-          "Ch. 8 — Champ magnétique": ["Force magnétique sur une charge", "Force sur un fil", "Mouvement circulaire de charge"],
-          "Ch. 9 — Sources de champ magnétique": ["Loi de Biot-Savart", "Loi d'Ampère", "Solénoïde"],
-          "Ch. 10 — Induction électromagnétique": ["Loi de Faraday", "Loi de Lenz", "Force électromotrice induite"]
+          "Ch. 1 — La force électrique": [
+            "La charge électrique",
+            "Conducteurs et isolants",
+            "Le phénomène de charge par induction",
+            "L'électroscope à feuilles",
+            "La loi de Coulomb"
+          ],
+          "Ch. 2 — Le champ électrique": [
+            "Le champ électrique (définition)",
+            "Les lignes de champ",
+            "Le champ électrique et les conducteurs",
+            "Mouvement d'une particule chargée dans un champ uniforme",
+            "Distributions de charges continues",
+            "Les dipôles",
+            "Le champ électrique et les isolants"
+          ],
+          "Ch. 3 — Le théorème de Gauss": [
+            "Le flux électrique",
+            "Démonstration du théorème de Gauss",
+            "La symétrie",
+            "Utilisation du théorème de Gauss",
+            "Théorème de Gauss et conducteurs"
+          ],
+          "Ch. 4 — Le potentiel électrique": [
+            "Le potentiel électrique",
+            "Relation entre potentiel, énergie et travail",
+            "Relation entre potentiel et champ électrique",
+            "Potentiel et énergie potentielle (charge ponctuelle)",
+            "Addition du potentiel (charges ponctuelles)",
+            "Addition du potentiel (distribution continue)",
+            "Le potentiel d'un conducteur"
+          ],
+          "Ch. 5 — Condensateurs et diélectriques": [
+            "La capacité",
+            "Associations de condensateurs (série et parallèle)",
+            "Énergie emmagasinée dans un condensateur",
+            "Condensateurs avec diélectrique",
+            "Description atomique des diélectriques"
+          ],
+          "Ch. 6 — Courant et résistance": [
+            "Le courant électrique",
+            "Vitesse de dérive et densité de courant",
+            "La résistance",
+            "La loi d'Ohm",
+            "La puissance électrique"
+          ],
+          "Ch. 7 — Les circuits à courant continu": [
+            "La f.é.m.",
+            "Associations de résistances (série et parallèle)",
+            "Les instruments de mesure",
+            "Les lois de Kirchhoff",
+            "Les circuits RC"
+          ],
+          "Ch. 8 — Le champ magnétique": [
+            "Le champ magnétique",
+            "Force magnétique sur une particule chargée",
+            "Force magnétique sur un conducteur parcouru par un courant",
+            "Moment de force sur une boucle de courant",
+            "Mouvement d'une particule chargée dans un champ magnétique",
+            "Combinaison des champs électrique et magnétique",
+            "Le cyclotron",
+            "L'effet Hall"
+          ],
+          "Ch. 9 — Les sources de champ magnétique": [
+            "Champ magnétique d'un long fil rectiligne",
+            "Force entre des fils conducteurs parallèles",
+            "La loi de Biot-Savart",
+            "Le théorème d'Ampère",
+            "Force magnétique entre dipôles magnétiques"
+          ],
+          "Ch. 10 — L'induction électromagnétique": [
+            "L'induction électromagnétique",
+            "Le flux magnétique",
+            "Loi de Faraday et loi de Lenz",
+            "Les générateurs",
+            "Origines de la f.é.m. induite",
+            "F.é.m. induite dans un conducteur en mouvement",
+            "Les courants de Foucault"
+          ],
+          "Ch. 11 — L'inductance": [
+            "L'auto-induction",
+            "L'inductance",
+            "Les circuits RL",
+            "Énergie emmagasinée dans une bobine",
+            "Oscillations dans un circuit LC"
+          ],
+          "Ch. 12 — Circuits en courant alternatif": [
+            "Considérations préliminaires",
+            "Résistance dans un circuit c.a.; valeurs efficaces",
+            "La bobine idéale dans un circuit c.a.",
+            "Le condensateur dans un circuit c.a.",
+            "La représentation de Fresnel",
+            "Les circuits RLC",
+            "Résonance dans un circuit RLC série",
+            "Puissance dans un circuit RLC série",
+            "Le transformateur"
+          ],
+          "Ch. 13 — Équations de Maxwell; ondes électromagnétiques": [
+            "Le courant de déplacement",
+            "Les équations de Maxwell",
+            "Les ondes électromagnétiques",
+            "Propagation de l'énergie et vecteur de Poynting",
+            "Quantité de mouvement et pression de radiation",
+            "L'expérience de Hertz",
+            "Le spectre électromagnétique"
+          ]
         }
       },
       "Ondes et physique moderne (301)": {
-        "manuel": "Benson — Ondes et physique moderne (vol. 3)",
+        "manuel": "Benson — Vol. 3 : Ondes et physique moderne",
         "chapitres": {
-          "Ch. 1 — Oscillations": ["Mouvement harmonique simple", "Pendule simple", "Énergie en MHS"],
-          "Ch. 2 — Ondes mécaniques": ["Ondes transversales et longitudinales", "Vitesse d'onde", "Superposition"],
-          "Ch. 3 — Son": ["Intensité sonore", "Effet Doppler", "Ondes stationnaires"],
-          "Ch. 4 — Optique géométrique": ["Réflexion et réfraction", "Loi de Snell", "Miroirs", "Lentilles minces"],
-          "Ch. 5 — Optique physique": ["Interférences", "Diffraction", "Polarisation"],
-          "Ch. 6 — Relativité restreinte": ["Postulats d'Einstein", "Dilatation du temps", "Contraction des longueurs"],
-          "Ch. 7 — Physique quantique": ["Effet photoélectrique", "Modèle de Bohr", "Dualité onde-particule"],
-          "Ch. 8 — Physique nucléaire": ["Structure du noyau", "Radioactivité", "Réactions nucléaires"]
+          "Ch. 1 — Les oscillations": [
+            "L'oscillation harmonique simple",
+            "Le système bloc-ressort",
+            "Énergie dans un mouvement harmonique simple",
+            "Les pendules",
+            "Les oscillations amorties",
+            "Oscillations forcées et résonance"
+          ],
+          "Ch. 2 — Les ondes mécaniques": [
+            "Caractéristiques des ondes",
+            "Vitesse d'une onde",
+            "Les ondes progressives",
+            "Les ondes sinusoïdales progressives",
+            "Réflexion et transmission",
+            "Superposition d'ondes",
+            "Interférence d'ondes sinusoïdales",
+            "Les ondes stationnaires",
+            "Ondes stationnaires résonantes sur une corde",
+            "Solutions d'une équation d'onde",
+            "Propagation de l'énergie sur une corde"
+          ],
+          "Ch. 3 — Le son": [
+            "Nature des ondes sonores",
+            "Ondes sonores stationnaires résonantes",
+            "L'effet Doppler",
+            "Les battements",
+            "L'intensité du son"
+          ],
+          "Ch. 4 — La lumière, réflexion et réfraction": [
+            "Le modèle électromagnétique",
+            "Le spectre électromagnétique",
+            "Le principe de Huygens",
+            "Réflexion et réfraction des ondes",
+            "L'optique géométrique",
+            "Réflexion et réfraction en optique géométrique",
+            "La réflexion totale interne",
+            "Le prisme et la dispersion",
+            "Formation d'images par réflexion et réfraction",
+            "Le miroir plan",
+            "Les miroirs sphériques"
+          ],
+          "Ch. 5 — Lentilles et instruments optiques": [
+            "Propriétés des lentilles",
+            "Les lentilles minces",
+            "Grossissement angulaire des instruments optiques",
+            "La loupe",
+            "Le microscope composé",
+            "Le télescope"
+          ],
+          "Ch. 6 — Optique ondulatoire (interférence)": [
+            "L'interférence",
+            "Diffraction pour obtenir des sources lumineuses en phase",
+            "L'expérience de Young",
+            "Amplitude et intensité dans l'expérience de Young",
+            "Les pellicules minces",
+            "L'interféromètre de Michelson"
+          ],
+          "Ch. 7 — Optique ondulatoire (diffraction et polarisation)": [
+            "La diffraction",
+            "Figure de diffraction (fente simple)",
+            "Le critère de Rayleigh",
+            "Les réseaux de diffraction",
+            "Les fentes multiples",
+            "Intensité de la figure de diffraction (fente simple)",
+            "La polarisation"
+          ],
+          "Ch. 8 — La relativité restreinte": [
+            "L'indétectable éther",
+            "La covariance",
+            "Les deux postulats d'Einstein",
+            "Les méthodes de mesure",
+            "La relativité de la simultanéité",
+            "La dilatation du temps",
+            "La contraction des longueurs",
+            "Quantité de mouvement et énergie relativistes"
+          ],
+          "Ch. 9 — Les débuts de la théorie quantique": [
+            "La spectroscopie",
+            "Le rayonnement du corps noir",
+            "L'effet photoélectrique",
+            "L'effet Compton",
+            "Les spectres de raies",
+            "Les modèles atomiques classiques",
+            "Modèle de Bohr pour l'atome à un seul électron",
+            "Dualité onde-particule de la lumière"
+          ],
+          "Ch. 10 — La mécanique quantique": [
+            "Les ondes de Broglie",
+            "La diffraction des électrons",
+            "L'équation d'onde de Schrödinger",
+            "La fonction d'onde",
+            "Applications de la mécanique quantique",
+            "Principe d'incertitude de Heisenberg",
+            "La réduction du paquet d'ondes",
+            "La dualité onde-particule"
+          ],
+          "Ch. 11 — Atomes et solides": [
+            "Nombres quantiques de l'atome d'hydrogène",
+            "Fonctions d'onde de l'atome d'hydrogène",
+            "Le spin",
+            "Atomes à plusieurs électrons",
+            "Principe d'exclusion de Pauli et tableau périodique",
+            "Les moments magnétiques",
+            "Dispositifs semi-conducteurs"
+          ],
+          "Ch. 12 — La physique nucléaire": [
+            "La structure du noyau",
+            "Force nucléaire, énergie de liaison, stabilité",
+            "La radioactivité",
+            "Rythme de désintégration radioactive",
+            "Dangers des émissions radioactives et radioprotection",
+            "Les réactions nucléaires",
+            "La fission",
+            "La fusion"
+          ],
+          "Ch. 13 — Les particules élémentaires": [
+            "L'antimatière",
+            "Les forces d'échange",
+            "La classification des particules",
+            "Symétrie et lois de conservation",
+            "Le groupe SU(3) et les quarks",
+            "La couleur",
+            "Les théories de jauge",
+            "L'interaction électrofaible"
+          ],
+          "Ch. 14 — La physique du réchauffement planétaire": [
+            "Rayonnement solaire intercepté par la Terre",
+            "Rayonnement solaire réfléchi et absorbé",
+            "Déséquilibre énergétique de la Terre",
+            "Ampleur de l'effet de serre",
+            "Bilan énergétique de la Terre",
+            "Le forçage radiatif",
+            "Sensibilité climatique et climat du futur"
+          ]
         }
       }
     }
